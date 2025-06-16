@@ -1,0 +1,24 @@
+Avoca FC -> avo125x125.jpg
+Barnstoneworth United FC -> battlewinsports400x300.png
+Berkeley Vale SC -> entrancelogocopy.png
+Budgewoi FC -> budgewoilogo.png
+Doyalson-Wyee FC -> woywoy16.jpg
+East Gosford FC -> central_coast_football.png
+Gosford City FC -> egfc2021transparent.png
+Gwandalan FC -> kanwalfc16.jpg
+Kanwal FC -> kanwalfc16.jpg
+Kariong United FC -> wmg50years.png
+Killarney District SC -> hawkesburybrewingco.png
+Kincumber FC -> kcfctransparent.png
+Mountain District FC -> ourimbahfc.png
+Ourimbah United FC -> ourimbahfc.png
+Southern & Ettalong FC -> entrancelogocopy.png
+Terrigal United FC -> ter125x125.jpg
+The Entrance Bateau Bay FC -> entrancelogocopy.png
+Toukley-Gorokan SC -> ourimbahfc.png
+Tuggerah United FC -> tug125x200.png
+Umina United SC -> umi125x125.jpg
+Woongarrah FC -> budgewoilogo.png
+Woy Woy FC -> woywoy16.jpg
+Wyoming FC -> icon_mapping.txt
+Wyong Emus FC -> wmg50years.png
