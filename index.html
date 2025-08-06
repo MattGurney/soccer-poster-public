@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match Schedule (Web)</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/4/4e/Python_logo.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         :root {
             --sidebar-width: 270px;
@@ -14,11 +14,15 @@
             --font-size-base: 1.1rem;
             --font-size-heading: 2.2rem;
         }
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent body from scrolling */
+        }
         body {
             font-family: var(--font-main);
             font-size: var(--font-size-base);
-            margin: 0;
-            padding: 0;
             background: #f6f8fa;
             color: #222;
             display: flex;
@@ -27,7 +31,8 @@
             width: var(--sidebar-width);
             background: #1a3a5a;
             color: #fff;
-            min-height: 100vh;
+            height: 100vh;
+            overflow-y: auto;
             position: fixed;
             left: 0;
             top: 0;
@@ -62,19 +67,29 @@
         }
         .main-content {
             margin-left: var(--sidebar-width);
-            width: 100%;
-            max-width: var(--main-max-width);
-            padding: 2.5rem 2rem 2rem 2rem;
+            width: calc(100% - var(--sidebar-width));
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            padding: 0;
             box-sizing: border-box;
         }
         .match-panel {
+            min-height: 100vh;
+            width: 100%;
+            max-width: var(--main-max-width);
+            margin: 0 auto; /* Center the panel */
+            padding: 2.5rem 2rem;
             background: #fff;
-            border-radius: 0.5rem;
+            border-bottom: 1px solid #eee;
+            border-radius: 0;
             box-shadow: 0 2px 8px rgba(30,40,60,0.07);
-            margin-bottom: 2.5rem;
-            padding: 2rem 1.5rem;
-            border: 1.5px solid #bbb;
-            scroll-margin-top: 2.5rem;
+            scroll-snap-align: start;
+            scroll-margin-top: 0;
+            position: relative;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
         .match-panel:target {
             border-color: #e6c300;
@@ -83,12 +98,22 @@
         h1 {
             font-size: var(--font-size-heading);
             margin-bottom: 1.5rem;
-            color: #1a3a5a;
+            color: #1a5a99;
             font-family: var(--font-heading);
+            text-align: center;
         }
+
+        /* Style for bold text within the match preview blurb */
+        .match-panel b {
+            font-weight: bold !important;
+        }
+        
         @media (max-width: 900px) {
             .sidebar { display: none; }
-            .main-content { margin-left: 0; padding: 1rem; }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -97,103 +122,145 @@
         <h2>Matches</h2>
         <ul>
             
-            
             <li>
-                <a href="#match-0">
-                    08:00<br>
-                    <span style="font-size:0.98rem;">Umina vs The Entrance</span>
+                <a href="#umi-waa5-2">
+                    
+                        
+                        
+                    
+                    
+                    Women&#39;s All Age Division 5-2
                 </a>
             </li>
             
             <li>
-                <a href="#match-1">
-                    08:00<br>
-                    <span style="font-size:0.98rem;">Umina vs East Gosford</span>
+                <a href="#umi-waa5-1">
+                    
+                        
+                        
+                    
+                    
+                    Women&#39;s All Age Division 5-1
                 </a>
             </li>
             
             <li>
-                <a href="#match-2">
-                    08:00<br>
-                    <span style="font-size:0.98rem;">Umina vs Southern & Ettalong</span>
+                <a href="#umi-w14a">
+                    
+                        
+                        
+                    
+                    
+                    Girls Under 14 Division A
                 </a>
             </li>
             
             <li>
-                <a href="#match-3">
-                    09:00<br>
-                    <span style="font-size:0.98rem;">Umina vs Wyoming</span>
+                <a href="#umi-w18a">
+                    
+                        
+                        
+                    
+                    
+                    Women&#39;s Under 18 Division A
                 </a>
             </li>
             
             <li>
-                <a href="#match-4">
-                    09:00<br>
-                    <span style="font-size:0.98rem;">Umina vs Gosford City</span>
+                <a href="#umi-wpl">
+                    
+                        
+                        
+                    
+                    
+                    Women&#39;s Premier League
                 </a>
             </li>
             
             <li>
-                <a href="#match-5">
-                    10:15<br>
-                    <span style="font-size:0.98rem;">Umina vs Wyoming</span>
+                <a href="#umi-maa10">
+                    
+                        
+                        
+                    
+                    
+                    Men&#39;s All Age Division 10
                 </a>
             </li>
             
             <li>
-                <a href="#match-6">
-                    10:15<br>
-                    <span style="font-size:0.98rem;">Umina vs Killarney District</span>
+                <a href="#umi-mdiv1-res">
+                    
+                        
+                        
+                    
+                    
+                    Men&#39;s Division 1 Reserve Grade
                 </a>
             </li>
             
             <li>
-                <a href="#match-7">
-                    11:30<br>
-                    <span style="font-size:0.98rem;">Umina vs The Entrance</span>
-                </a>
-            </li>
-            
-            <li>
-                <a href="#match-8">
-                    11:45<br>
-                    <span style="font-size:0.98rem;">Umina vs Killarney District</span>
-                </a>
-            </li>
-            
-            <li>
-                <a href="#match-9">
-                    13:25<br>
-                    <span style="font-size:0.98rem;">Umina vs Wyoming</span>
+                <a href="#umi-mdiv1-first">
+                    
+                        
+                        
+                    
+                    
+                    Men&#39;s Division 1 First Grade
                 </a>
             </li>
             
         </ul>
     </nav>
     <div class="main-content">
-        <h1>Match Schedule</h1>
         
-        <div class="match-panel" id="match-0" style="position:relative;">
+        <div class="match-panel" id="umi-waa5-2">
             
+            <h1>Match Schedule</h1>
             
-            <div style="position:absolute; top:1.2rem; right:1.2rem; z-index:2;">
-                <img src="sponsor_icons/1xGS-logo-with-tagline-100px.jpg" alt="Sponsor Logo" style="height:60px;max-width:120px;object-fit:contain;vertical-align:middle;">
+            <div class="top-section" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 1em;">
+                <!-- Round Indicator (Top-Left) -->
+                <div class="round-info" style="font-size: 1.1rem; font-weight: bold; color: #1a5a99; text-align: left; padding: 0.4em 0.8em; background-color: #e0eaf2; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Round 16
+                </div>
+
+                <!-- League/Date/Time/Venue (Centered) -->
+                <div class="match-details" style="flex-grow: 1; text-align: center; margin: 0 1em;">
+                    <div style="font-size: 1.6rem; font-weight: bold; color: #1a5a99; margin-bottom: 0.2em; text-transform: uppercase;">
+                        Women&#39;s All Age Division 5
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #555;">
+                        Sunday, 10/08/2025 &mdash; 10:00 am
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: #888; margin-top: 0.2em;">
+                        Venue: Umina Oval/UMI2
+                    </div>
+                </div>
+
+                <!-- Sponsor Icon (Top-Right) -->
+                <div class="sponsor-logo" style="flex-shrink: 0; text-align: right;">
+                    
+                        
+                        <a href="https://countrywidewealth.com.au" target="_blank" rel="noopener noreferrer">
+                            <img src="sponsor_icons_resized/CWW_Logo_100px.jpg" alt="Sponsor Logo" style="height:112px;max-width:224px;object-fit:contain;vertical-align:middle;">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em; text-align: center;">
+                Umina-2 vs Doyalson-Wyee
+            </div>
+            <div style="margin-bottom:1em; text-align: center;">
+                
+                <video src="club_icons/Eagle_Animation_Correction_Wings_Flap.mp4" autoplay loop muted style="width:285px;height:285px;object-fit:cover;vertical-align:middle;margin:0 40px;"></video>
+                
+                <span style="font-size:5rem; color:#888; font-weight: bold; vertical-align: middle;">vs</span>
+                
+                <img src="club_icons/doy125x125.jpg" alt="Doyalson-Wyee" Logo" style="width:240px;height:240px;object-fit:contain;vertical-align:middle;margin:0 40px;">
+                
             </div>
             
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                U12BS &mdash; 21/06/2025 &mdash; 08:00
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs The Entrance
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/entrancelogocopy.png" alt="The Entrance Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI2
-            </div>
             
             <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
                 <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
@@ -209,255 +276,1105 @@
                         <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
                         <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
                     </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">5</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina-2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">6</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">5</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">20</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">22</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">20</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">11</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Doyalson-Wyee</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">19</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">37</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">-18</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            
+            
+            
+                
+                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: stretch; width:100%;">
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina-2</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">3-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v East Gosford</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">⚖️</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kanwal</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Gosford City</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">13/07</span>
+                            </div>
+                        
+                    </div>
+                    <div style="width:2px;min-width:2px;max-width:2px;background:#111;border-radius:0;margin:0;"></div>
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Doyalson-Wyee</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">⚖️</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Wyoming</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">5-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Wyong</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-3</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Umina</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">09/07</span>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                
+                <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
+                    <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                        
+                            
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span style="display:inline-flex;align-items:center;max-width:100%;">
+                        <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Umina-2</span>
+                        <span style="margin:0 2px;">v</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Doyalson-Wyee</span>
+                        <span style="margin-left:6px;color:#888;">3-1</span>
+                        <span style="margin-left:6px;color:#888;">09/07</span>
+                    </span>
+                </div>
+                
+            
+            <div style="margin-bottom:1em;">
+                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
+                <span>Umina United SC welcomes Doyalson-Wyee FC to Umina Oval in a clash of contrasting fortunes. The Eagles aim to extend their solid form, boasting a positive goal difference this season. Meanwhile, the Wolves look to overcome their recent struggles and secure a vital win on the road. With Umina's attacking prowess against Doyalson-Wyee's resilience, this match promises excitement. Thanks to <b>Country Wide Wealth</b> for their support of this intriguing matchup!</span>
+            </div>
+            
+        </div>
+        
+        <div class="match-panel" id="umi-waa5-1">
+            
+            <div class="top-section" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 1em;">
+                <!-- Round Indicator (Top-Left) -->
+                <div class="round-info" style="font-size: 1.1rem; font-weight: bold; color: #1a5a99; text-align: left; padding: 0.4em 0.8em; background-color: #e0eaf2; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Round 16
+                </div>
+
+                <!-- League/Date/Time/Venue (Centered) -->
+                <div class="match-details" style="flex-grow: 1; text-align: center; margin: 0 1em;">
+                    <div style="font-size: 1.6rem; font-weight: bold; color: #1a5a99; margin-bottom: 0.2em; text-transform: uppercase;">
+                        Women&#39;s All Age Division 5
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #555;">
+                        Sunday, 10/08/2025 &mdash; 11:40 am
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: #888; margin-top: 0.2em;">
+                        Venue: Umina Oval/UMI2
+                    </div>
+                </div>
+
+                <!-- Sponsor Icon (Top-Right) -->
+                <div class="sponsor-logo" style="flex-shrink: 0; text-align: right;">
+                    
+                        
+                        <a href="https://ettalongdiggers.com" target="_blank" rel="noopener noreferrer">
+                            <img src="https://uminaeagles.com.au/wp-content/uploads/2020/02/Ettalong_DIggers_RGB_Medium-100px.jpg" alt="Sponsor Logo" style="height:112px;max-width:224px;object-fit:contain;vertical-align:middle;">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em; text-align: center;">
+                Umina-1 vs Wyong-2
+            </div>
+            <div style="margin-bottom:1em; text-align: center;">
+                
+                <video src="club_icons/Eagle_Animation_Correction_Wings_Flap.mp4" autoplay loop muted style="width:285px;height:285px;object-fit:cover;vertical-align:middle;margin:0 40px;"></video>
+                
+                <span style="font-size:5rem; color:#888; font-weight: bold; vertical-align: middle;">vs</span>
+                
+                <img src="club_icons/wyg125x1251.jpg" alt="Wyong-2" Logo" style="width:240px;height:240px;object-fit:contain;vertical-align:middle;margin:0 40px;">
+                
+            </div>
+            
+            
+            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
+                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
+                    <tr style="background:#e6e6e6;">
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">7</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina-1</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">5</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">4</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">18</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">18</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">21</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">-3</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">12</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Wyong-2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">7</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">79</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">-72</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            
+            
+            
+                
+                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: stretch; width:100%;">
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina-1</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-2</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Killarney District</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">4-3</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v East Gosford</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Wyoming</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">13/07</span>
+                            </div>
+                        
+                    </div>
+                    <div style="width:2px;min-width:2px;max-width:2px;background:#111;border-radius:0;margin:0;"></div>
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Wyong-2</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-2</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Gosford City</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-5</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Doyalson-Wyee</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-5</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Killarney District</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">13/07</span>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                
+                <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
+                    <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                        
+                            
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span style="display:inline-flex;align-items:center;max-width:100%;">
+                        <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Umina-1</span>
+                        <span style="margin:0 2px;">v</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Wyong-2</span>
+                        <span style="margin-left:6px;color:#888;">5-1</span>
+                        <span style="margin-left:6px;color:#888;">11/05</span>
+                    </span>
+                </div>
+                
+            
+            <div style="margin-bottom:1em;">
+                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
+                <span>Join us at Umina Oval as Umina United SC takes on Wyong Emus FC in an intriguing matchup! The Eagles, with 18 goals scored, face the Emus, who are aiming to secure their first win of the season. Umina looks to capitalize on home advantage, while Wyong seeks to upset the form book. Will the Eagles soar to victory, or can the Emus cause an upset? Thanks to <b>Ettalong Diggers</b> for their support of this exciting clash!</span>
+            </div>
+            
+        </div>
+        
+        <div class="match-panel" id="umi-w14a">
+            
+            <div class="top-section" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 1em;">
+                <!-- Round Indicator (Top-Left) -->
+                <div class="round-info" style="font-size: 1.1rem; font-weight: bold; color: #1a5a99; text-align: left; padding: 0.4em 0.8em; background-color: #e0eaf2; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Round 17
+                </div>
+
+                <!-- League/Date/Time/Venue (Centered) -->
+                <div class="match-details" style="flex-grow: 1; text-align: center; margin: 0 1em;">
+                    <div style="font-size: 1.6rem; font-weight: bold; color: #1a5a99; margin-bottom: 0.2em; text-transform: uppercase;">
+                        Girls Under 14 Division A
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #555;">
+                        Sunday, 10/08/2025 &mdash; 8:45 am
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: #888; margin-top: 0.2em;">
+                        Venue: Umina Oval/UMI2
+                    </div>
+                </div>
+
+                <!-- Sponsor Icon (Top-Right) -->
+                <div class="sponsor-logo" style="flex-shrink: 0; text-align: right;">
+                    
+                        
+                        <a href="https://goodsports.com.au" target="_blank" rel="noopener noreferrer">
+                            <img src="sponsor_icons_resized/1xGS-logo-with-tagline-100px.jpg" alt="Sponsor Logo" style="height:112px;max-width:224px;object-fit:contain;vertical-align:middle;">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em; text-align: center;">
+                Umina vs Southern &amp; Ettalong
+            </div>
+            <div style="margin-bottom:1em; text-align: center;">
+                
+                <video src="club_icons/Eagle_Animation_Correction_Wings_Flap.mp4" autoplay loop muted style="width:285px;height:285px;object-fit:cover;vertical-align:middle;margin:0 40px;"></video>
+                
+                <span style="font-size:5rem; color:#888; font-weight: bold; vertical-align: middle;">vs</span>
+                
+                <img src="club_icons/seufcnewtransparent.png" alt="Southern &amp; Ettalong" Logo" style="width:240px;height:240px;object-fit:contain;vertical-align:middle;margin:0 40px;">
+                
+            </div>
+            
+            
+            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
+                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
+                    <tr style="background:#e6e6e6;">
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">8</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Southern &amp; Ettalong</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">14</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">10</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">19</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">38</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">-19</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">9</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">14</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">31</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">-23</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            
+            
+            
+                
+                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: stretch; width:100%;">
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Ourimbah</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Gosford City</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kanwal</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">09/07</span>
+                            </div>
+                        
+                    </div>
+                    <div style="width:2px;min-width:2px;max-width:2px;background:#111;border-radius:0;margin:0;"></div>
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Southern &amp; Ettalong</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">3-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Killarney District</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">3-2</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kincumber</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">⚖️</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">3-3</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Killarney District</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">13/07</span>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                
+                <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
+                    <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                        
+                            
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span style="display:inline-flex;align-items:center;max-width:100%;">
+                        <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Umina</span>
+                        <span style="margin:0 2px;">v</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Southern &amp; Ettalong</span>
+                        <span style="margin-left:6px;color:#888;">1-5</span>
+                        <span style="margin-left:6px;color:#888;">01/06</span>
+                    </span>
+                </div>
+                
+            
+            <div style="margin-bottom:1em;">
+                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
+                <span>Join us at Umina Oval as the Umina United SC Eagles face off against Southern &amp; Ettalong FC Lions in an intriguing clash! The Eagles will look to turn the tide with their attacking prowess at home, while the Lions aim to build on their recent form. With Umina's goal-scoring potential against Southern &amp; Ettalong's resilience, this match promises excitement. Thanks to <b>Good Sports (Australian Drug Foundation)</b> for promoting healthy, drug-free sporting environments in this thrilling matchup!</span>
+            </div>
+            
+        </div>
+        
+        <div class="match-panel" id="umi-w18a">
+            
+            <div class="top-section" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 1em;">
+                <!-- Round Indicator (Top-Left) -->
+                <div class="round-info" style="font-size: 1.1rem; font-weight: bold; color: #1a5a99; text-align: left; padding: 0.4em 0.8em; background-color: #e0eaf2; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Round 17
+                </div>
+
+                <!-- League/Date/Time/Venue (Centered) -->
+                <div class="match-details" style="flex-grow: 1; text-align: center; margin: 0 1em;">
+                    <div style="font-size: 1.6rem; font-weight: bold; color: #1a5a99; margin-bottom: 0.2em; text-transform: uppercase;">
+                        Women&#39;s Under 18 Division A
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #555;">
+                        Sunday, 10/08/2025 &mdash; 1:20 pm
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: #888; margin-top: 0.2em;">
+                        Venue: Umina Oval/UMI2
+                    </div>
+                </div>
+
+                <!-- Sponsor Icon (Top-Right) -->
+                <div class="sponsor-logo" style="flex-shrink: 0; text-align: right;">
+                    
+                        
+                        <a href="https://www.guzmanygomez.com.au/locations/umina-beach/" target="_blank" rel="noopener noreferrer">
+                            <img src="https://uminaeagles.com.au/wp-content/uploads/2025/01/1200X1200PX_GYG_UMINA_BEACH_SOCIAL_TILE_UPDATE_UMINA_BEACH-1-e1738232187110.png" alt="Sponsor Logo" style="height:112px;max-width:224px;object-fit:contain;vertical-align:middle;">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em; text-align: center;">
+                Umina vs East Gosford
+            </div>
+            <div style="margin-bottom:1em; text-align: center;">
+                
+                <video src="club_icons/Eagle_Animation_Correction_Wings_Flap.mp4" autoplay loop muted style="width:285px;height:285px;object-fit:cover;vertical-align:middle;margin:0 40px;"></video>
+                
+                <span style="font-size:5rem; color:#888; font-weight: bold; vertical-align: middle;">vs</span>
+                
+                <img src="club_icons/egfc2021transparent.png" alt="East Gosford" Logo" style="width:240px;height:240px;object-fit:contain;vertical-align:middle;margin:0 40px;">
+                
+            </div>
+            
+            
+            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
+                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
+                    <tr style="background:#e6e6e6;">
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">14</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">34</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">31</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">22</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">6</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">East Gosford</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">14</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">4</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">10</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">12</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">12</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">33</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">-21</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            
+            
+            
+                
+                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: stretch; width:100%;">
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-2</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Terrigal</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kincumber</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">2-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v East Gosford</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">08/07</span>
+                            </div>
+                        
+                    </div>
+                    <div style="width:2px;min-width:2px;max-width:2px;background:#111;border-radius:0;margin:0;"></div>
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#e74c3c;">Last 3 East Gosford</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-4</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Killarney District</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Terrigal</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-4</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kincumber</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">13/07</span>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                
+                <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
+                    <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                        
+                            
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span style="display:inline-flex;align-items:center;max-width:100%;">
+                        <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Umina</span>
+                        <span style="margin:0 2px;">v</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">East Gosford</span>
+                        <span style="margin-left:6px;color:#888;">2-1</span>
+                        <span style="margin-left:6px;color:#888;">08/07</span>
+                    </span>
+                </div>
+                
+            
+            <div style="margin-bottom:1em;">
+                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
+                <span>Join us at Umina Oval as the high-flying Umina United SC Eagles take on East Gosford FC Rams in a clash of contrasting form! Umina boasts an impressive goal difference of 22, while East Gosford looks to turn their season around with only 4 wins so far. With Umina's attacking prowess against East Gosford's resilient defense, this match promises excitement. Thanks to <b>GYG Umina</b> for fueling the action with their fresh, Mexican-inspired food!</span>
+            </div>
+            
+        </div>
+        
+        <div class="match-panel" id="umi-wpl">
+            
+            <div class="top-section" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 1em;">
+                <!-- Round Indicator (Top-Left) -->
+                <div class="round-info" style="font-size: 1.1rem; font-weight: bold; color: #1a5a99; text-align: left; padding: 0.4em 0.8em; background-color: #e0eaf2; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Round 19
+                </div>
+
+                <!-- League/Date/Time/Venue (Centered) -->
+                <div class="match-details" style="flex-grow: 1; text-align: center; margin: 0 1em;">
+                    <div style="font-size: 1.6rem; font-weight: bold; color: #1a5a99; margin-bottom: 0.2em; text-transform: uppercase;">
+                        Women&#39;s Premier League
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #555;">
+                        Sunday, 10/08/2025 &mdash; 3:00 pm
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: #888; margin-top: 0.2em;">
+                        Venue: Umina Oval/UMI2
+                    </div>
+                </div>
+
+                <!-- Sponsor Icon (Top-Right) -->
+                <div class="sponsor-logo" style="flex-shrink: 0; text-align: right;">
+                    
+                        
+                        <a href="https://www.coastalcurrentsco.com.au/" target="_blank" rel="noopener noreferrer">
+                            <img src="sponsor_icons_resized/Coastal_Currents_logo_revised_100px.jpg" alt="Sponsor Logo" style="height:112px;max-width:224px;object-fit:contain;vertical-align:middle;">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em; text-align: center;">
+                Umina vs Kincumber
+            </div>
+            <div style="margin-bottom:1em; text-align: center;">
+                
+                <video src="club_icons/Eagle_Animation_Correction_Wings_Flap.mp4" autoplay loop muted style="width:285px;height:285px;object-fit:cover;vertical-align:middle;margin:0 40px;"></video>
+                
+                <span style="font-size:5rem; color:#888; font-weight: bold; vertical-align: middle;">vs</span>
+                
+                <img src="club_icons/krfclogoshieldcopy2.png" alt="Kincumber" Logo" style="width:240px;height:240px;object-fit:contain;vertical-align:middle;margin:0 40px;">
+                
+            </div>
+            
+            
+            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
+                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
+                    <tr style="background:#e6e6e6;">
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">3</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Kincumber</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">5</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">32</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">39</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">18</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">21</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">4</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">6</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">7</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">21</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">28</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">35</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">-7</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            
+            
+            
+                
+                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: stretch; width:100%;">
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">2-4</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v East Gosford</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">4-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v The Entrance</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">⚖️</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kincumber</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">17/07</span>
+                            </div>
+                        
+                    </div>
+                    <div style="width:2px;min-width:2px;max-width:2px;background:#111;border-radius:0;margin:0;"></div>
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Kincumber</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">2-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Terrigal</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">⚖️</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v East Gosford</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
+                            </div>
+                        
+                            <div style="display:flex;flex-direction:row;align-items:center;">
+                                <span style="width:20px;flex-shrink:0;text-align:left;">⚖️</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Umina</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">17/07</span>
+                            </div>
+                        
+                    </div>
+                </div>
+                
+                
+                <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
+                    <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                        
+                            
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span style="display:inline-flex;align-items:center;max-width:100%;">
+                        <span style="width:20px;flex-shrink:0;text-align:left;">⚖️</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Umina</span>
+                        <span style="margin:0 2px;">v</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Kincumber</span>
+                        <span style="margin-left:6px;color:#888;">1-1</span>
+                        <span style="margin-left:6px;color:#888;">17/07</span>
+                    </span>
+                </div>
+                
+            
+            <div style="margin-bottom:1em;">
+                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
+                <span>Don't miss the showdown at Umina Oval as Umina United SC takes on Kincumber FC in an intriguing clash! Umina Eagles look to bounce back after a tough loss, while Kincumber Roos aim to build on their solid 9-win season. With Umina's attacking prowess against Kincumber's sturdy defense, this match promises excitement. Thanks to <b>Coastal Currents Electrical Services</b> for keeping the lights on for this electrifying matchup!</span>
+            </div>
+            
+        </div>
+        
+        <div class="match-panel" id="umi-maa10">
+            
+            <div class="top-section" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 1em;">
+                <!-- Round Indicator (Top-Left) -->
+                <div class="round-info" style="font-size: 1.1rem; font-weight: bold; color: #1a5a99; text-align: left; padding: 0.4em 0.8em; background-color: #e0eaf2; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Round 16
+                </div>
+
+                <!-- League/Date/Time/Venue (Centered) -->
+                <div class="match-details" style="flex-grow: 1; text-align: center; margin: 0 1em;">
+                    <div style="font-size: 1.6rem; font-weight: bold; color: #1a5a99; margin-bottom: 0.2em; text-transform: uppercase;">
+                        Men&#39;s All Age Division 10
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #555;">
+                        Sunday, 10/08/2025 &mdash; 8:00 am
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: #888; margin-top: 0.2em;">
+                        Venue: Pluim Park/PLUIM3
+                    </div>
+                </div>
+
+                <!-- Sponsor Icon (Top-Right) -->
+                <div class="sponsor-logo" style="flex-shrink: 0; text-align: right;">
+                    
+                        
+                        <a href="https://colemanfinancialgroup.com.au/" target="_blank" rel="noopener noreferrer">
+                            <img src="sponsor_icons_resized/Coleman-Financial-Group-logo-services-contact-details-e1738232206378.png" alt="Sponsor Logo" style="height:112px;max-width:224px;object-fit:contain;vertical-align:middle;">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em; text-align: center;">
+                Umina vs Berkeley Vale
+            </div>
+            <div style="margin-bottom:1em; text-align: center;">
+                
+                <video src="club_icons/Eagle_Animation_Correction_Wings_Flap.mp4" autoplay loop muted style="width:285px;height:285px;object-fit:cover;vertical-align:middle;margin:0 40px;"></video>
+                
+                <span style="font-size:5rem; color:#888; font-weight: bold; vertical-align: middle;">vs</span>
+                
+                <img src="club_icons/ber125x1251.jpg" alt="Berkeley Vale" Logo" style="width:240px;height:240px;object-fit:contain;vertical-align:middle;margin:0 40px;">
+                
+            </div>
+            
+            
+            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
+                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
+                    <tr style="background:#e6e6e6;">
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
+                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Berkeley Vale</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">29</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">60</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">18</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">42</td>
+                    </tr>
+                    
                     <tr>
                         <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">6</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">12</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">15</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">12</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#e74c3c;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">The Entrance</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">6</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">19</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">19</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
-                    </tr>
-                </table>
-            </div>
-            
-            
-            
-            
-                
-                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 32px; justify-content: center;">
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina:</span>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">4-1 vs TER U12BS-2</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-0 vs KIN U12BS</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">07/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-2 vs ENT U12BS</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">05/06/2025</span>
-                            </div>
-                        
-                    </div>
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#e74c3c;">Last 3 The Entrance:</span>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-1 vs GOS U12BS-2</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">3-2 vs AVO U12BS</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">07/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-1 vs UMI U12BS</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">05/06/2025</span>
-                            </div>
-                        
-                    </div>
-                </div>
-                
-                
-                <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
-                    <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
-                    UMI U12BS 1-2 ENT U12BS 05/06/2025
-                </div>
-                
-            
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>In a clash of styles, Umina Eagles host The Entrance Dolphins at Umina Oval. The Eagles aim to soar against the Dolphins' solid defense. Can Umina's attack break through, or will The Entrance maintain their position at the top of the league?</span>
-            </div>
-            
-        </div>
-        
-        <div class="match-panel" id="match-1" style="position:relative;">
-            
-            
-            <div style="position:absolute; top:1.2rem; right:1.2rem; z-index:2;">
-                <img src="sponsor_icons/sgf_logo_soccer_web_300x150px-e1581666395685.png" alt="Sponsor Logo" style="height:60px;max-width:120px;object-fit:contain;vertical-align:middle;">
-            </div>
-            
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                U11D &mdash; 21/06/2025 &mdash; 08:00
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs East Gosford
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/egfc2021transparent.png" alt="East Gosford Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI1A
-            </div>
-            
-            
-            
-            
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>Get ready for a roaring match as the Umina Eagles take on the East Gosford Rams at Umina Oval! The Eagles have soared past opponents like the Kanwal Kangaroos, while the Rams have been charging through their matches with the Central Coast Grammar School. Thanks to <b>SGF (Sticky Green Frog)</b> for hopping into action! Don't miss the fun under the sun as these junior soccer stars show off their skills on the pitch. It's going to be a wild showdown!</span>
-            </div>
-            
-        </div>
-        
-        <div class="match-panel" id="match-2" style="position:relative;">
-            
-            
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                U11GIRLS &mdash; 21/06/2025 &mdash; 08:00
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs Southern & Ettalong
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/seufcnewtransparent.png" alt="Southern & Ettalong Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI1B
-            </div>
-            
-            
-            
-            
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>Get ready for a roaring good time as the Umina Eagles take on the Southern & Ettalong Lions at Umina Oval! The Eagles have flown in from Umina Beach, while the Lions have traveled from Ettalong Beach. Thanks to <b>Raine & Horne – Team Keenan</b> for supporting the action! It's sure to be a wild match between these fierce competitors. So grab your binoculars and get ready to cheer on your favorite team in this exciting junior soccer showdown!</span>
-            </div>
-            
-        </div>
-        
-        <div class="match-panel" id="match-3" style="position:relative;">
-            
-            
-            <div style="position:absolute; top:1.2rem; right:1.2rem; z-index:2;">
-                <img src="sponsor_icons/OceanBeachHotel_Logo_web_500px-e1739435455885.jpg" alt="Sponsor Logo" style="height:60px;max-width:120px;object-fit:contain;vertical-align:middle;">
-            </div>
-            
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                U13C &mdash; 21/06/2025 &mdash; 09:00
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs Wyoming
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/wmg50years.png" alt="Wyoming Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI2
-            </div>
-            
-            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
-                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
-                    <tr style="background:#e6e6e6;">
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
-                    </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">5</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">29</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">-13</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#e74c3c;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Wyoming</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">7</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">17</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">10</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">62</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">-49</td>
                     </tr>
+                    
                 </table>
             </div>
             
             
             
-            
                 
-                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 32px; justify-content: center;">
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina:</span>
+                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: stretch; width:100%;">
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-3 vs KAN U13C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-2</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Wyong</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">0-5 vs KIN U13C-2</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">07/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kariong</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-7 vs TOU U13C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">0-4</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Budgewoi</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">06/07</span>
                             </div>
                         
                     </div>
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Wyoming:</span>
+                    <div style="width:2px;min-width:2px;max-width:2px;background:#111;border-radius:0;margin:0;"></div>
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Berkeley Vale</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-4 vs KDS U13C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-3</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Budgewoi</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">0-5 vs KAN U13C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">07/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">6-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Doyalson-Wyee</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">20/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-1 vs KIN U13C-2</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">4-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kariong</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">06/07</span>
                             </div>
                         
                     </div>
@@ -466,66 +1383,102 @@
                 
                 <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
                     <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
-                    WMG U13C 3-1 UMI U13C 12/04/2025
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                        
+                            
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span style="display:inline-flex;align-items:center;max-width:100%;">
+                        <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Umina</span>
+                        <span style="margin:0 2px;">v</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Berkeley Vale</span>
+                        <span style="margin-left:6px;color:#888;">0-4</span>
+                        <span style="margin-left:6px;color:#888;">29/06</span>
+                    </span>
                 </div>
                 
             
             <div style="margin-bottom:1em;">
                 <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>In a clash at Umina Oval, Umina U13C Eagles take on Wyoming U13C Tigers. Wyoming is currently in 3rd place, with a strong attack, while Umina looks to bounce back from a tough run of results. Expect an intriguing battle on the pitch! Thanks to <b>Ocean Beach Hotel</b> for their support.</span>
+                <span>Join us at Pluim Park as Umina United SC takes on Berkeley Vale SC in a clash of contrasting fortunes! Umina Eagles aim to turn the tide with their attacking prowess, while the Wombats boast an impressive goal difference. Can the home team secure a vital win, or will Berkeley Vale continue their strong form? Thanks to <b>Coleman Financial Group</b> for their support of this intriguing matchup!</span>
             </div>
             
         </div>
         
-        <div class="match-panel" id="match-4" style="position:relative;">
+        <div class="match-panel" id="umi-mdiv1-res">
             
-            
-            <div style="position:absolute; top:1.2rem; right:1.2rem; z-index:2;">
-                <img src="sponsor_icons/Hungry-wolf-Ettalong_200x100px.jpg" alt="Sponsor Logo" style="height:60px;max-width:120px;object-fit:contain;vertical-align:middle;">
+            <div class="top-section" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 1em;">
+                <!-- Round Indicator (Top-Left) -->
+                <div class="round-info" style="font-size: 1.1rem; font-weight: bold; color: #1a5a99; text-align: left; padding: 0.4em 0.8em; background-color: #e0eaf2; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Round 19
+                </div>
+
+                <!-- League/Date/Time/Venue (Centered) -->
+                <div class="match-details" style="flex-grow: 1; text-align: center; margin: 0 1em;">
+                    <div style="font-size: 1.6rem; font-weight: bold; color: #1a5a99; margin-bottom: 0.2em; text-transform: uppercase;">
+                        Men&#39;s Division 1 Reserve Grade
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #555;">
+                        Sunday, 10/08/2025 &mdash; 12:45 pm
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: #888; margin-top: 0.2em;">
+                        Venue: Umina Oval/UMI1
+                    </div>
+                </div>
+
+                <!-- Sponsor Icon (Top-Right) -->
+                <div class="sponsor-logo" style="flex-shrink: 0; text-align: right;">
+                    
+                        
+                        <a href="https://bespokeroofing.com.au/" target="_blank" rel="noopener noreferrer">
+                            <img src="https://uminaeagles.com.au/wp-content/uploads/2025/02/bespoke-charcoal-bronze-PRINT-e1739435620888.jpg" alt="Sponsor Logo" style="height:112px;max-width:224px;object-fit:contain;vertical-align:middle;">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em; text-align: center;">
+                Umina vs Doyalson-Wyee
+            </div>
+            <div style="margin-bottom:1em; text-align: center;">
+                
+                <video src="club_icons/Eagle_Animation_Correction_Wings_Flap.mp4" autoplay loop muted style="width:285px;height:285px;object-fit:cover;vertical-align:middle;margin:0 40px;"></video>
+                
+                <span style="font-size:5rem; color:#888; font-weight: bold; vertical-align: middle;">vs</span>
+                
+                <img src="club_icons/doy125x125.jpg" alt="Doyalson-Wyee" Logo" style="width:240px;height:240px;object-fit:contain;vertical-align:middle;margin:0 40px;">
+                
             </div>
             
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                U11B &mdash; 21/06/2025 &mdash; 09:00
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs Gosford City
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/gos125x125.jpg" alt="Gosford City Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI1A
-            </div>
-            
-            
-            
-            
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>Get ready for an exciting clash at Umina Oval as Umina United SC Eagles host Gosford City FC Dragons in a U11B showdown. Keep an eye out for the youngsters as they showcase their skills on the pitch. Thanks to <b>Hungry Wolf's Pizza & Pasta</b> for fueling the action!</span>
-            </div>
-            
-        </div>
-        
-        <div class="match-panel" id="match-5" style="position:relative;">
-            
-            
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                U13A &mdash; 21/06/2025 &mdash; 10:15
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs Wyoming
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/wmg50years.png" alt="Wyoming Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI2
-            </div>
             
             <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
                 <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
@@ -541,195 +1494,90 @@
                         <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
                         <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
                     </tr>
+                    
                     <tr>
                         <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">1</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">24</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">42</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">31</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">62</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">53</td>
                     </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#e74c3c;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Wyoming</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">7</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">5</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                    </tr>
-                </table>
-            </div>
-            
-            
-            
-            
-                
-                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 32px; justify-content: center;">
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina:</span>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">6-0 vs TER U13A-2</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">3-0 vs TER U13A-1</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">07/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">3-1 vs WYG U13A</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
-                            </div>
-                        
-                    </div>
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Wyoming:</span>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-1 vs KDS U13A</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-0 vs TER U13A-2</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">07/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">3-1 vs TER U13A-1</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
-                            </div>
-                        
-                    </div>
-                </div>
-                
-                
-                <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
-                    <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
-                    WMG U13A 2-4 UMI U13A 12/04/2025
-                </div>
-                
-            
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>League leaders Umina face off against Wyoming in a clash of the top teams. Umina's potent attack, led by 42 goals, takes on Wyoming's solid defense. With Umina's 8 wins in 9 games, can Wyoming disrupt their form? Don't miss this showdown at Umina Oval! Thanks to <b>Coleman Financial Group</b> for their support!</span>
-            </div>
-            
-        </div>
-        
-        <div class="match-panel" id="match-6" style="position:relative;">
-            
-            
-            <div style="position:absolute; top:1.2rem; right:1.2rem; z-index:2;">
-                <img src="sponsor_icons/sgf_logo_soccer_web_300x150px-e1581666395685.png" alt="Sponsor Logo" style="height:60px;max-width:120px;object-fit:contain;vertical-align:middle;">
-            </div>
-            
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                U16A &mdash; 21/06/2025 &mdash; 10:15
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs Killarney District
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/kds125x125.jpg" alt="Killarney District Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI1
-            </div>
-            
-            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
-                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
-                    <tr style="background:#e6e6e6;">
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
-                    </tr>
+                    
                     <tr>
                         <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">18</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">17</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Doyalson-Wyee</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">7</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">25</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">38</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">25</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
                     </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#e74c3c;">5</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Killarney District</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">6</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">5</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">30</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">-19</td>
-                    </tr>
+                    
                 </table>
             </div>
             
             
             
-            
                 
-                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 32px; justify-content: center;">
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina:</span>
+                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: stretch; width:100%;">
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">0-2 vs EGO U16A-1</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">⚖️</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Gosford City</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">0-3 vs ENT U16AN</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">07/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">4-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kincumber</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">19/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">0-1 vs AVO U16A</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kariong</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">12/07</span>
                             </div>
                         
                     </div>
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Killarney District:</span>
+                    <div style="width:2px;min-width:2px;max-width:2px;background:#111;border-radius:0;margin:0;"></div>
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Doyalson-Wyee</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-1 vs EGO U16A-2</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">5-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Woy Woy</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">0-1 vs EGO U16A-1</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">07/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">3-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Toukley-Gorokan</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">19/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">0-3 vs ENT U16AN</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">2-4</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Gosford City</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">13/07</span>
                             </div>
                         
                     </div>
@@ -738,34 +1586,102 @@
                 
                 <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
                     <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
-                    KDS U16A 1-2 UMI U16A 17/05/2025
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                        
+                            
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span style="display:inline-flex;align-items:center;max-width:100%;">
+                        <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Umina</span>
+                        <span style="margin:0 2px;">v</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Doyalson-Wyee</span>
+                        <span style="margin-left:6px;color:#888;">2-1</span>
+                        <span style="margin-left:6px;color:#888;">22/06</span>
+                    </span>
                 </div>
                 
             
             <div style="margin-bottom:1em;">
                 <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>Watch as Umina United SC host Killarney District SC at Umina Oval in a clash between two closely-ranked U16A teams. Umina, with a slight points advantage, will look to capitalize on their recent away wins, while Killarney aims to improve their struggling defense. Thanks to <b>SGF (Sticky Green Frog)</b> for their support!</span>
+                <span>Get ready for an electrifying showdown at Umina Oval as the high-flying Umina United SC takes on Doyalson-Wyee FC! Umina Eagles soar with a flawless record of 13 wins and a jaw-dropping 53-goal difference. Meanwhile, the Wolves are no slouch, boasting 8 wins and a solid 25 points. This clash promises to be a thrilling battle between two top contenders. Thanks to <b>Bespoke Roofing + Cladding</b> for their support of this exciting matchup!</span>
             </div>
             
         </div>
         
-        <div class="match-panel" id="match-7" style="position:relative;">
+        <div class="match-panel" id="umi-mdiv1-first">
             
+            <div class="top-section" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 1em;">
+                <!-- Round Indicator (Top-Left) -->
+                <div class="round-info" style="font-size: 1.1rem; font-weight: bold; color: #1a5a99; text-align: left; padding: 0.4em 0.8em; background-color: #e0eaf2; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Round 19
+                </div>
+
+                <!-- League/Date/Time/Venue (Centered) -->
+                <div class="match-details" style="flex-grow: 1; text-align: center; margin: 0 1em;">
+                    <div style="font-size: 1.6rem; font-weight: bold; color: #1a5a99; margin-bottom: 0.2em; text-transform: uppercase;">
+                        Men&#39;s Division 1 First Grade
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #555;">
+                        Sunday, 10/08/2025 &mdash; 2:45 pm
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: #888; margin-top: 0.2em;">
+                        Venue: Umina Oval/UMI1
+                    </div>
+                </div>
+
+                <!-- Sponsor Icon (Top-Right) -->
+                <div class="sponsor-logo" style="flex-shrink: 0; text-align: right;">
+                    
+                        
+                        <a href="https://www.bendigobank.com.au/branch/nsw/ettalong-beach-community-bank-branch/" target="_blank" rel="noopener noreferrer">
+                            <img src="https://uminaeagles.com.au/wp-content/uploads/2023/02/bendigo_bank_Flexi_100px.jpg" alt="Sponsor Logo" style="height:112px;max-width:224px;object-fit:contain;vertical-align:middle;">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em; text-align: center;">
+                Umina vs Doyalson-Wyee
+            </div>
+            <div style="margin-bottom:1em; text-align: center;">
+                
+                <video src="club_icons/Eagle_Animation_Correction_Wings_Flap.mp4" autoplay loop muted style="width:285px;height:285px;object-fit:cover;vertical-align:middle;margin:0 40px;"></video>
+                
+                <span style="font-size:5rem; color:#888; font-weight: bold; vertical-align: middle;">vs</span>
+                
+                <img src="club_icons/doy125x125.jpg" alt="Doyalson-Wyee" Logo" style="width:240px;height:240px;object-fit:contain;vertical-align:middle;margin:0 40px;">
+                
+            </div>
             
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                U14C &mdash; 21/06/2025 &mdash; 11:30
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs The Entrance
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/entrancelogocopy.png" alt="The Entrance Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI2
-            </div>
             
             <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
                 <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
@@ -781,303 +1697,90 @@
                         <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
                         <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
                     </tr>
+                    
                     <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">5</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">1</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">5</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">-7</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#e74c3c;">6</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">The Entrance</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">14</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">-11</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">48</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">98</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">87</td>
                     </tr>
-                </table>
-            </div>
-            
-            
-            
-            
-                
-                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 32px; justify-content: center;">
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina:</span>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">3-0 vs EGO U14C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-7 vs BUD U14C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-4 vs KAN U14C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">17/05/2025</span>
-                            </div>
-                        
-                    </div>
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#e74c3c;">Last 3 The Entrance:</span>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">0-7 vs DOY U14C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-1 vs EGO U14C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-6 vs KAN U14C</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">10/05/2025</span>
-                            </div>
-                        
-                    </div>
-                </div>
-                
-                
-            
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>In an intriguing clash at Umina Oval, Umina will host The Entrance in a battle of U14C contenders. Umina, with a slight points advantage, seeks to build on their recent win, while The Entrance aims to shore up their defense after a tough loss. Thanks to <b>Specsavers (Woy Woy)</b> for their support!</span>
-            </div>
-            
-        </div>
-        
-        <div class="match-panel" id="match-8" style="position:relative;">
-            
-            
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                M45B &mdash; 21/06/2025 &mdash; 11:45
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs Killarney District
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/kds125x125.jpg" alt="Killarney District Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI1
-            </div>
-            
-            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
-                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
-                    <tr style="background:#e6e6e6;">
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
-                    </tr>
+                    
                     <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">15</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">29</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">2</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">Doyalson-Wyee</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">16</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#e74c3c;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Killarney District</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">6</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">19</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">29</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">14</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">15</td>
-                    </tr>
-                </table>
-            </div>
-            
-            
-            
-            
-                
-                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 32px; justify-content: center;">
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina:</span>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">11-0 vs KIN M45B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-2 vs TER M45B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">3-1 vs EGO M45B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">17/05/2025</span>
-                            </div>
-                        
-                    </div>
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Killarney District:</span>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">5-3 vs BWT M45B-2</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-0 vs EGO M45B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
-                            </div>
-                        
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">4-1 vs BWT M45B-1</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">17/05/2025</span>
-                            </div>
-                        
-                    </div>
-                </div>
-                
-                
-            
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>Get ready for a classic clash at Umina Oval as UMI M45B-1 takes on KDS M45B. These seasoned players born before 1980 bring skill, camaraderie, and a love for the game. Thanks to **Raine & Horne – Team Keenan**, Masters football is always a winner! #MastersFootball #ExperienceMatters</span>
-            </div>
-            
-        </div>
-        
-        <div class="match-panel" id="match-9" style="position:relative;">
-            
-            
-            <div style="position:absolute; top:1.2rem; right:1.2rem; z-index:2;">
-                <img src="sponsor_icons/CWW_Logo_100px.jpg" alt="Sponsor Logo" style="height:60px;max-width:120px;object-fit:contain;vertical-align:middle;">
-            </div>
-            
-            <div style="font-size:1.2rem; color:#1a5a99; font-weight:bold; margin-bottom:0.5em;">
-                M35B &mdash; 21/06/2025 &mdash; 13:25
-            </div>
-            <div style="font-size:1.4rem; font-weight:bold; margin-bottom:0.3em;">
-                Umina vs Wyoming
-            </div>
-            <div style="margin-bottom:1em;">
-                <img src="club_icons/umi125x125.jpg" alt="Umina Logo" style="height:60px;vertical-align:middle;">&nbsp;
-                <span style="font-size:1.1rem; color:#888;">vs</span>&nbsp;
-                <img src="club_icons/wmg50years.png" alt="Wyoming Logo" style="height:60px;vertical-align:middle;">
-            </div>
-            <div style="margin-bottom:1em;">
-                <span style="font-weight:bold; color:#e74c3c;">Venue:</span> Umina Oval/UMI1
-            </div>
-            
-            <div style="margin-top:6px; margin-bottom:6px; width:100%; display:flex; justify-content:center;">
-                <table style="border-collapse:collapse; width:auto; min-width:100px; font-size:1.02rem; background:#f9f9f9; border-radius:0.4em; overflow:hidden;">
-                    <tr style="background:#e6e6e6;">
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Position</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Team</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Played</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Wins</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Draws</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Losses</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Points</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals For</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goals Against</th>
-                        <th style="padding:3px 6px; border:1px solid #bbb;">Goal Diff</th>
-                    </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#1a5a99;">4</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Umina</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">9</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
                         <td style="padding:3px 6px; border:1px solid #bbb;">7</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">13</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">10</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">3</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">27</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">32</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">32</td>
+                        <td style="padding:3px 6px; border:1px solid #bbb;">0</td>
                     </tr>
-                    <tr>
-                        <td style="padding:3px 6px; border:1px solid #bbb; font-weight:bold; color:#e74c3c;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">Wyoming</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">8</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">5</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">2</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">1</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">17</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">17</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">11</td>
-                        <td style="padding:3px 6px; border:1px solid #bbb;">6</td>
-                    </tr>
+                    
                 </table>
             </div>
             
             
             
-            
                 
-                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 32px; justify-content: center;">
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina:</span>
+                <div style="margin-top:10px; margin-bottom:10px; font-size:0.98rem; text-align:left; display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: stretch; width:100%;">
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#1a5a99;">Last 3 Umina</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">1-2 vs KAN M35B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">3-1</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Gosford City</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">4-2 vs KIN M35B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">3-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kincumber</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">19/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-0 vs OUR M35B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">17/05/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">3-0</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Kariong</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">12/07</span>
                             </div>
                         
                     </div>
-                    <div style="flex:1; min-width:160px;">
-                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Wyoming:</span>
+                    <div style="width:2px;min-width:2px;max-width:2px;background:#111;border-radius:0;margin:0;"></div>
+                    <div style="flex:1; min-width:0;">
+                        <span style="font-weight:bold;color:#e74c3c;">Last 3 Doyalson-Wyee</span>
+                        <hr style="border:none;border-top:2px solid #111;margin:2px 0 6px 0;width:100%;">
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">4-2 vs TOU M35B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">14/06/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">4-3</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Woy Woy</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">27/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">3-1 vs TER M35B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">31/05/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-2</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Toukley-Gorokan</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">19/07</span>
                             </div>
                         
                             <div style="display:flex;flex-direction:row;align-items:center;">
-                                <span style="min-width:90px;">2-1 vs KIN M35B</span>
-                                <span style="min-width:50px;text-align:right;color:#888;margin-left:1em;">17/05/2025</span>
+                                <span style="width:20px;flex-shrink:0;text-align:left;">👎</span>
+                                <span style="width:32px;flex-shrink:0;text-align:left;">1-4</span>
+                                <span style="flex:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">v Gosford City</span>
+                                <span style="width:38px;flex-shrink:0;text-align:right;color:#888;margin-left:0;">13/07</span>
                             </div>
                         
                     </div>
@@ -1086,13 +1789,53 @@
                 
                 <div style="margin-top:0; margin-bottom:12px; font-size:0.98rem; color:#555; text-align:left; width:100%; display: block;">
                     <span style="font-weight:bold; color:#555;">Last Head to Head:</span>
-                    UMI M35B 0-1 WMG M35B 26/04/2025
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                        
+                            
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span style="display:inline-flex;align-items:center;max-width:100%;">
+                        <span style="width:20px;flex-shrink:0;text-align:left;">🏆</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Umina</span>
+                        <span style="margin:0 2px;">v</span>
+                        <span style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;">Doyalson-Wyee</span>
+                        <span style="margin-left:6px;color:#888;">2-1</span>
+                        <span style="margin-left:6px;color:#888;">22/06</span>
+                    </span>
                 </div>
                 
             
             <div style="margin-bottom:1em;">
                 <span style="font-weight:bold; color:#1a5a99;">Match Preview:</span>
-                <span>Join us at Umina Oval for a thrilling Masters clash between UMI M35B and WMG M35B, brought to you by **Country Wide Wealth**. Experience the camaraderie and spirit of mature football as these teams showcase their skills. Born before 1990? You're in for a treat! #MastersFootball #UMIvWMG</span>
+                <span>Don't miss the clash at Umina Oval as the high-flying Umina Eagles host Doyalson-Wyee Wolves in a battle of top-tier teams! Umina United SC boasts an impressive 16-game unbeaten streak, leading the league with a remarkable 87-goal difference. Meanwhile, Doyalson-Wyee FC has been a force to be reckoned with, notching 9 wins and 27 points so far this season. Thanks to <b>Bendigo Bank – Ettalong Beach Community Branch</b> for their support of this exciting matchup!</span>
             </div>
             
         </div>
